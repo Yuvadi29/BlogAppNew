@@ -1,0 +1,65 @@
+.Bar {
+    flex: 3;
+    margin: 20px;
+    padding-bottom: 30px;
+    /* background-color: #eee; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Baritem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Bartitle {
+    margin: 10px;
+    padding: 5px;
+    width: 80%;
+    border-top: 1px solid #a7a4a4;
+    border-bottom: 1px solid #a7a4a4;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 20px;
+    color: #222;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: center;
+}
+
+.barimage {
+    width: 80%;
+    height: 200px;
+    margin-top: 15px;
+    border-radius: 10px;
+}
+
+.Baritem>p {
+    padding: 30px;
+}
+
+.BarList {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.BarListItem {
+    display: inline-block;
+    width: 50%;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.BarMedia {
+    margin-top: 15px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fbicon {
+    font-size: 16px;
+}

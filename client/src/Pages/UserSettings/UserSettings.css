@@ -1,0 +1,83 @@
+.UserSettings {
+    display: flex;
+}
+
+.wrapper {
+    flex: 9;
+    padding: 20px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.updatetitle {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: darkcyan;
+}
+
+.deletetitle {
+    font-size: 20px;
+    color: darkred;
+    cursor: pointer;
+}
+
+.update {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileimage {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.profileimage>img {
+    width: 70px;
+    height: 70px;
+    border-radius: 22px;
+    object-fit: cover;
+}
+
+.profileicon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: darkcyan;
+    color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.update > label {
+    font-size: 27px;
+    margin-top: 20px;
+}
+
+.update > input {
+    color: grey;
+    margin: 10px 0;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid darkcyan;
+    font-size: 22px;
+}
+
+.updatesetting{
+    width: 150px;
+    align-self: center;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background-color: blueviolet;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
