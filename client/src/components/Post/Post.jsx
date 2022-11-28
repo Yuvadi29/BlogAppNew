@@ -30,7 +30,7 @@ const Post = ({ post }) => {
                 {post.description}
             </p>
         </div>
-    )
+    );
 }
 
-export default Post
+export default Post;
