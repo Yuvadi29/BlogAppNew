@@ -14,9 +14,10 @@ const multer = require('multer');
 //CORS stands for Cross-Origin Resource Sharing. It allows us to relax the security applied to an API. This is done by bypassing the Access-Control-Allow-Origin headers, which specify which origins can access the API.
 
 // In other words, CORS is a browser security feature that restricts cross-origin HTTP requests with other servers and specifies which domains access your resources.
-app.use(cors({
-    origin: "*"
-}));
+// app.use(cors({
+//     origin: "*"
+// }));
+app.use(cors());
 
 dotenv.config();
 app.use(express.json()); //Imp for testing of API
