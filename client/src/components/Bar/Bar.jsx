@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Bar.css';
 import barimage from './barimage.jpg';
@@ -30,7 +31,9 @@ const Bar = () => {
                 <span className="Bartitle">Categories</span>
                 <ul className="BarList">
                     {cats.map(c=>(
-                        <li className="BarListItem">{c.name}</li>
+                        <Link to={`/?category=${c.name}`} className="link">
+                            <li className="BarListItem">{c.name}</li>
+                        </Link>
                     ))}
                 </ul>
             </div>

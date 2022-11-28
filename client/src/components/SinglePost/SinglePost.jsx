@@ -3,7 +3,7 @@ import './SinglePost.css';
 // import Post from './post.jpg';
 import { BiEdit } from 'react-icons/bi';
 import { FaTrash } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -36,7 +36,12 @@ const SinglePost = () => {
                 </h1>
 
                 <div className="postInfo">
-                    <span>Author: <b className="postAuthor">{post.username}</b></span>
+                    <span>Author: 
+                        <Link to={`/?user=${post.username}`} className="link">
+                            <b>{post.username}</b>
+                        {/* <b className="postAuthor">{post.username}</b> */}
+                        </Link>
+                        </span>
                     <span>{new Date(post.createdAt).toDateString()}</span>
                     <br />
                 </div>
