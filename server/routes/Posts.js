@@ -1,7 +1,7 @@
 // This Route is used for authentication 
 
 const router = require("express").Router();
-const User = require('../models/User.js');
+// const User = require('../models/User.js');
 const Post = require('../models/Post.js');
 
 //Create new post 
@@ -71,7 +71,7 @@ router.get('/:id', async (req, res) => {
 });
 
 //Get All Post
-router.get('/?user=', async (req, res) => {
+router.get('/', async (req, res) => {
     const username = req.query.user;
     const category = req.query.category;
 

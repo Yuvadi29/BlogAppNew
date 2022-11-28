@@ -7,7 +7,7 @@ const Post = ({ post }) => {
     return (
         <div className='Post'>
             {post.photo && (
-                <img className='Postimg' src={Postimg} alt="pimg" />
+                <img className='Postimg' src={post.photo} alt="pimg" />
             )}
 
             <div className="PostDetails">
