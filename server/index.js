@@ -48,5 +48,5 @@ app.use('/api/posts', postRoute);
 app.use('/api/categories', categoriesRoute);
 
 app.listen(port, () => {
-    console.log(`Server is Running at port https://localhost:${port}`);
+    console.log(`Server is Running at port http://localhost:${port}`);
 })

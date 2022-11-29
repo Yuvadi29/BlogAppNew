@@ -1,32 +1,42 @@
-import React from 'react';
-import './Register.css';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import './Register.css';
 
 const Register = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [mobileNo, setMobileNo] = useState("");
     const [error, setError] = useState(false);
 
 
+    const handleUsername = (e) => {
+        setUsername(e.target.value);
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(false);
 
         try {
             const res = await axios.post('http://localhost:5000/api/auth/register', {
                 username,
                 email,
                 password,
-                mobileNo,
             });
-            console.log(res);
-            res.data && window.location.replace('/login');
+            // console.log(res);
+            res.data && window.location.replace('/login'); //If data is valid then redirect to login page
 
         } catch (error) {
-            // console.log(error);
+            console.log(error);
             setError(true);
         }
     };
@@ -46,7 +56,7 @@ const Register = () => {
                                     <div className="form-row">
                                         <div className="form-group col-md-8">
                                             <label for="userName">Username</label>
-                                            <input type="text" className="form-control" id="userName" placeholder="UserName" onChange={(e) => setUsername(e.target.value)} />
+                                            <input type="text" className="form-control" placeholder="Username" onChange={handleUsername} />
                                         </div>
                                         {/* <div className="form-group col-md-4">
                                             <label for="middleName">Middle Name</label>
@@ -59,23 +69,24 @@ const Register = () => {
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
-                                            <label for="inputEmail4">Email</label>
-                                            <input type="email" className="form-control" id="inputEmail4" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                                            <label for="Email">Email</label>
+                                            <input type="Email" className="form-control" placeholder="Email" onChange={handleEmail} />
                                         </div>
                                         <div className="form-group col-md-6">
-                                            <label for="inputPassword4">Password</label>
-                                            <input type="password" className="form-control" id="inputPassword4" placeholder="Password" onChange={(e) => setPassword(e.target.password)} />
+                                            <label for="Password">Password</label>
+                                            <input type="Password" className="form-control" placeholder="Password" onChange={handlePassword} />
                                         </div>
                                     </div>
-                                    <div className="form-row">
+                                    {/* <div className="form-row">
                                         <div className="form-group col-md-6">
-                                            <label for="phonenumber">Phone Number</label>
-                                            <input type="text" className="form-control" id="phonenumber" placeholder="Phone Number" onChange={(e) => setMobileNo(e.target.mobileNo)} />
+                                            <label for="mboileNo">Mobile No</label>
+                                            <input type="number" className="form-control" id="mobileNo" placeholder="Mobile No" onChange={(e) => setMobileNo(e.target.mobileNo)} />
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className="form-group">
                                         <small><Link to="/login" className="form-text text-muted">I have an account!</Link></small>
                                     </div>
+                                    {error && <span style={{ color: "red" }}>User Exists</span>}
                                     <button type="submit" className="btn btn-primary btn-lg btn-block">Register</button>
                                 </form>
                             </div>
@@ -87,4 +98,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Register;

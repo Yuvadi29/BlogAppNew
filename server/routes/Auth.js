@@ -16,7 +16,6 @@ router.post('/register', async (req, res) => {
             username: req.body.username,//Takes username from model
             email: req.body.email, //Takes Email from model
             password: HashPassword, //Takes password from model
-            mobileNo: req.body.mobileNo, //Takes mobile number from model
 
         }); // using (req.body) we Take up everything from user model
 
