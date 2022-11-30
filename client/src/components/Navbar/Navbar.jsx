@@ -8,7 +8,11 @@ import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const { user } = useContext(Context);
+  const { user, dispatch } = useContext(Context);
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" })
+  }
 
   return (
     <div className="navbar">
@@ -34,7 +38,7 @@ const Navbar = () => {
             <Link className='link' to="/create" >Create</Link>
           </li>
           <li className="NavcompItem">
-            <Link className='link' to="/logout" >Logout</Link>
+            <Link className='link' to="/logout" onClick={handleLogout}>{user && "Logout"}</Link>
           </li>
         </ul>
       </div>
@@ -43,7 +47,7 @@ const Navbar = () => {
         {
           user ? (
             <img
-              src={profile}
+              src={user.ProfileImage}
               className='profileimage'
               alt="profileImage" />
           ) : (
