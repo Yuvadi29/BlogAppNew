@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const SinglePost = () => {
+    const PF = "http://localhost:5000/images/";
+
     const location = useLocation();
     const path = (location.pathname.split("/")[2]);
     const [post, setPost] = useState({});
@@ -23,7 +25,7 @@ const SinglePost = () => {
         <div className='SinglePost'>
             <div className="wrapper">
                 {post.photo && (
-                    <img src={post.photo} alt="" className="postimage" />
+                    <img src={PF + post.photo} alt="" className="postimage" />
                 )
                 }
 

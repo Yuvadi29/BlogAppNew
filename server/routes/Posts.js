@@ -2,7 +2,7 @@
 
 const router = require("express").Router();
 // const User = require('../models/User.js');
-const Post = require('../models/Post.js');
+const Post = require('../models/Post');
 
 //Create new post 
 //For Creating something use post, updating exisiting model use put , delete ke liye delete, fetch ke liye get

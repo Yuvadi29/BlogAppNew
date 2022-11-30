@@ -9,6 +9,7 @@ const postRoute = require('./routes/Posts');
 const categoriesRoute = require('./routes/Categories');
 const cors = require('cors');
 const multer = require('multer');
+const path = require('path');
 
 
 //CORS stands for Cross-Origin Resource Sharing. It allows us to relax the security applied to an API. This is done by bypassing the Access-Control-Allow-Origin headers, which specify which origins can access the API.
@@ -22,6 +23,8 @@ app.use(cors());
 dotenv.config();
 app.use(express.json()); //Imp for testing of API
 
+app.use("/images", express.static(path.join(__dirname,"/images")));
+
 mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -31,7 +34,7 @@ mongoose.connect(process.env.MONGO_URL, {
 //Upload file restAPI
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads")
+        cb(null, "images")
     }, filename: (req, file, cb) => {
         cb(null, req.body.name);
     },
