@@ -79,7 +79,11 @@ input[type="checkbox"] {
     width: 97%;
     font-size: 22px;
     border-radius: 5px;
+}
 
+.login button:disabled{
+    cursor: not-allowed;
+    background-color: coral;
 }
 
 .login hr {
