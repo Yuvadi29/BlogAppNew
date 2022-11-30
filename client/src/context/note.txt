@@ -1,0 +1,5 @@
+Context is primarily used when some data needs to be accessible to many components at different nesting levels. Rather than passing redundant props we use Context api instead.
+
+React.createContext() will create a context object. When the component subscribing to this object is rendered, it will read the current context value mentioned.
+
+Context.Provider() is used to accept a value prop that is to be passed to consuming components that are the children of the provider.  Every context object comes with a Provider React component that allows consuming components to subscribe to context changes.
