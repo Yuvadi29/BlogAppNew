@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Navbar.css';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { GrTwitter } from 'react-icons/gr';
 import profile from './profile.jpg';
+import { Context } from '../../context/Context';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const user = false;
+  const { user } = useContext(Context);
+
   return (
     <div className="navbar">
 
