@@ -2,13 +2,13 @@ import React, { useContext } from 'react';
 import './Navbar.css';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { GrTwitter } from 'react-icons/gr';
-import profile from './profile.jpg';
 import { Context } from '../../context/Context';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { user, dispatch } = useContext(Context);
+  const PF = "http://localhost:5000/images/";
 
   const handleLogout = () => {
     dispatch({ type: "LOGOUT" })
@@ -44,24 +44,26 @@ const Navbar = () => {
       </div>
 
       <div className="navright">
-        {
-          user ? (
+        {user ? (
+          <Link to="/usersetting">
             <img
-              src={user.ProfileImage}
+              src={PF + user.ProfileImage}
               className='profileimage'
               alt="profileImage" />
-          ) : (
-            <>
-              <ul className="Navcomp">
-                <li className="NavcompItem">
-                  <Link className='link' to="/login" >Login</Link>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link className='link' to="/register" >Register</Link>
+          </Link>
 
-                </li>
-              </ul>
-            </>
-          )
+        ) : (
+          <>
+            <ul className="Navcomp">
+              <li className="NavcompItem">
+                <Link className='link' to="/login" >Login</Link>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <Link className='link' to="/register" >Register</Link>
+
+              </li>
+            </ul>
+          </>
+        )
         }
 
         <BsSearch className='searchicon' />
