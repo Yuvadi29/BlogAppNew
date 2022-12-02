@@ -1,6 +1,5 @@
 import React from 'react';
 import './SinglePost.css';
-// import Post from './post.jpg';
 import { BiEdit } from 'react-icons/bi';
 import { FaTrash } from 'react-icons/fa';
 import { useLocation, Link } from 'react-router-dom';
@@ -21,15 +20,17 @@ const SinglePost = () => {
         }
         getPost();
     }, [path]);
+
     return (
         <div className='SinglePost'>
             <div className="wrapper">
-                {post.photo && (
-                    <img src={PF + post.photo} alt="" className="postimage" />
-                )
+                {
+                    post.photo && (
+                        <img src={PF + post.photo} alt="" className="postimage" />
+                    )
                 }
 
-                <h1 className="postTitle">
+                < h1 className="postTitle">
                     {post.title}
                     <div className="edit">
                         <BiEdit className="editicon" />
@@ -38,12 +39,12 @@ const SinglePost = () => {
                 </h1>
 
                 <div className="postInfo">
-                    <span>Author: 
+                    <span>Author:
                         <Link to={`/?user=${post.username}`} className="link">
                             <b>{post.username}</b>
-                        {/* <b className="postAuthor">{post.username}</b> */}
+                            {/* <b className="postAuthor">{post.username}</b> */}
                         </Link>
-                        </span>
+                    </span>
                     <span>{new Date(post.createdAt).toDateString()}</span>
                     <br />
                 </div>
@@ -51,7 +52,7 @@ const SinglePost = () => {
                 </p>
 
             </div>
-        </div>
+        </div >
     );
 }
 

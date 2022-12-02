@@ -21,11 +21,11 @@ const Create = () => {
             const data = new FormData();
             const filename = Date.now() + file.name;
             data.append("name", filename);
-            data.append("file", filename);
+            data.append("file", file);
             newPost.photo = filename;
 
             try {
-                await axios.post('http://localhost:5000/api/upload')
+                await axios.post('http://localhost:5000/api/upload', data);
             } catch (error) {
 
             }
@@ -41,10 +41,7 @@ const Create = () => {
     return (
         <div className='Create'>
             {file && (
-                <img
-                    className='Create__image'
-                    src={URL.createObjectURL(file)}
-                    alt="createimage" />
+                <img className="Create__image" src={URL.createObjectURL(file)} alt="" />
             )}
             <form className="create" onSubmit={handleSubmit}>
 

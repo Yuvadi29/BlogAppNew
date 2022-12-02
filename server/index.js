@@ -26,6 +26,7 @@ app.use(express.json()); //Imp for testing of API
 app.use("/images", express.static(path.join(__dirname, "/images")));
 
 
+
 mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -35,16 +36,17 @@ mongoose.connect(process.env.MONGO_URL, {
 //Upload file restAPI
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "images")
-    }, filename: (req, file, cb) => {
+        cb(null, "images");
+    },
+    filename: (req, file, cb) => {
         cb(null, req.body.name);
     },
 });
 
 const upload = multer({ storage: storage });
-app.post('/api/upload', upload.single("file"), (req, res) => {
+app.post("/api/upload", upload.single("file"), (req, res) => {
     res.status(200).json("File has been uploaded");
-})
+});
 
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
