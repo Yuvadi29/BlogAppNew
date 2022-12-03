@@ -15,6 +15,8 @@ const SinglePost = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [updateNote, setUpdateNote] = useState("");
+
+    
     //Fetch single post from database
     useEffect(() => {
         const getPost = async () => {

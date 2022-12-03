@@ -39,7 +39,7 @@ router.post('/login', async (req,res) => {
 
         const{ password, ...other } = user._doc;
 
-        res.status(200).json(other);
+        return res.status(200).json(other);
     } catch (error) {
         return res.status(500).json(error);
     }

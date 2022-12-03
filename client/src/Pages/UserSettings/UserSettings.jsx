@@ -1,13 +1,11 @@
-import React, { useContext, useState } from 'react';
-import Bar from '../../components/Bar/Bar';
+
 import './UserSettings.css';
-import { CgProfile } from 'react-icons/cg';
-import { Context } from '../../context/Context';
-import axios from 'axios';
+import Sidebar from "../../components/Bar/Bar";
+import { useContext, useState } from "react";
+import { Context } from "../../context/Context";
+import axios from "axios";
 
-
-const UserSettings = () => {
-
+export default function Settings() {
     const [file, setFile] = useState(null);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -15,13 +13,12 @@ const UserSettings = () => {
     const [success, setSuccess] = useState(false);
 
     const { user, dispatch } = useContext(Context);
-    const PF = "http://localhost:5000/images/";
-
+    const PF = "http://localhost:5000/images/"
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch({ type: "UPDATE_START" });
-        const updateUser = {
+        const updatedUser = {
             userId: user._id,
             username,
             email,
@@ -32,63 +29,73 @@ const UserSettings = () => {
             const filename = Date.now() + file.name;
             data.append("name", filename);
             data.append("file", file);
-            updateUser.ProfileImage = filename;
+            updatedUser.profilePic = filename;
             try {
-                await axios.post("http://localhost:5000/api/upload", data);
-            } catch (error) {
-
-            }
+                await axios.post("http://localhost:3000/api/upload", data);
+            } catch (err) { }
         }
         try {
-            const res = await axios.post("http://localhost:5000/api/users/" + user._id, updateUser);
+            const res = await axios.put("http://localhost:3000/api/users/" + user._id, updatedUser);
             setSuccess(true);
             dispatch({ type: "UPDATE_SUCCESS", payload: res.data });
-        } catch (error) {
+        } catch (err) {
             dispatch({ type: "UPDATE_FAILURE" });
         }
     };
-
     return (
-        <div className='UserSettings'>
-            <div className="wrapper">
-                <div className="title">
-                    <span className="updatetitle">
-                        Update your Profile
-                    </span>
+        <div className="settings">
+            <div className="settingsWrapper">
+                <div className="settingsTitle">
+                    <span className="settingsUpdateTitle">Update Your Account</span>
+                    <span className="settingsDeleteTitle">Delete Account</span>
                 </div>
-
-                <form className="update" onSubmit={handleSubmit}>
-                    <label>Profile Image</label>
-                    <br />
-                    <div className="profileimage">
+                <form className="settingsForm" onSubmit={handleSubmit}>
+                    <label>Profile Picture</label>
+                    <div className="settingsPP">
                         <img
                             src={file ? URL.createObjectURL(file) : PF + user.ProfileImage}
                             alt=""
                         />
                         <label htmlFor="fileInput">
-                            <CgProfile className='profileicon' />
+                            <i className="settingsPPIcon far fa-user-circle"></i>
                         </label>
-                        <input type="file" id='fileInput' style={{ display: 'none' }} onChange={(e) => setFile(e.target.files[0])} />
+                        <input
+                            type="file"
+                            id="fileInput"
+                            style={{ display: "none" }}
+                            onChange={(e) => setFile(e.target.files[0])}
+                        />
                     </div>
-                    <label>UserName</label>
-                    <input type="text" placeholder={user.username} onChange={(e) => setUsername(e.target.value)} />
+                    <label>Username</label>
+                    <input
+                        type="text"
+                        placeholder={user.username}
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
                     <label>Email</label>
-                    <input type="email" placeholder={user.email} onChange={(e) => setEmail(e.target.value)} />
+                    <input
+                        type="email"
+                        placeholder={user.email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
                     <label>Password</label>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)} />
-
-                    <button className="updatesetting" type='submit' >Update Changes</button>
+                    <input
+                        type="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button className="settingsSubmit" type="submit">
+                        Update
+                    </button>
                     {success && (
-                        <span style={{ color: "green", textAlign: "center", marginTop: "20px" }}>
-                            Profile Has Been Updated!!
+                        <span
+                            style={{ color: "green", textAlign: "center", marginTop: "20px" }}
+                        >
+                            Profile has been updated...
                         </span>
                     )}
                 </form>
-
             </div>
-            <Bar />
+            <Sidebar />
         </div>
-    )
+    );
 }
-
-export default UserSettings;
